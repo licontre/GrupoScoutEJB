@@ -1,0 +1,25 @@
+<ui:composition template="/WEB-INF/templates/plantilla-logueado.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">   
+    <ui:define name="title">Grupo Scout 39 Santo Angel - Málaga</ui:define>
+    <ui:define name="content">
+        <c:set var="doc" value="#{manejadorDocumentos.documento}" />
+        <div id="tag-light-grey">
+            <div class="tag-light-grey container">
+                <h1>#{doc.nombre}</h1>
+            </div>
+        </div>
+        <div id="tag-grey">
+            
+        </div>
+        <div id="tag-light-grey">
+            <div class="container" align="center">
+                <h:outputText id="visor" value="#{doc.copiadocumento}"/>
+            </div>
+        </div>
+ </ui:define>
+</ui:composition>
+

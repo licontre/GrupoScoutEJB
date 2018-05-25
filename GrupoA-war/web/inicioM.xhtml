@@ -1,0 +1,57 @@
+<ui:composition template="/WEB-INF/templates/plantillaMonitor.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions">   
+    <ui:define name="head">
+        <link href="./css/inicio.css" rel="stylesheet" type="text/css" />
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css"></script>
+        
+    </ui:define>
+    <ui:define name="title">Grupo Scout 39 Santo Angel - Málaga</ui:define>
+
+    <ui:define name="content">
+
+        <div class="container">
+            <div class="row my-row">
+                <div class="col-9"> 
+                    <ui:repeat var="event" value="#{manejadorEventos.eventos}"> 
+                        <h:form>
+                            <h2>#{event.nombre}</h2>
+                            <div class="datos">
+                                <table>
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>01/01/2018</td>
+                                        <td>Grupo</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <p>#{fn:substring(event.descripcion,0,150)}...</p>
+                            <h:commandButton value="Seguir leyendo" action="verEventoM.xhtml">
+                                <f:actionListener binding="#{manejadorEventos.setEvento(event)}"/>
+                            </h:commandButton>
+                        </h:form>
+                    </ui:repeat>
+
+                </div>
+                <div class="col-3 my-col">
+                    <script>
+                        $('#calendar').fullCalendar({
+                            defaultView: 'month'
+                        });
+                    </script>
+                
+                </div>
+            </div>
+        </div>
+
+
+        <!--<h:dataTable -->
+    </ui:define>
+</ui:composition>

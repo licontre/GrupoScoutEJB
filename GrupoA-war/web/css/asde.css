@@ -1,0 +1,19 @@
+#imagenes{
+    margin-bottom: 200px;
+}
+#img_andalucia{
+    right:20px;
+    width: 225px;
+    height: 110px;
+}
+#img_espana{
+    left: 5px;
+    right: 5px;
+    width: 225px;
+    height: 225px;
+}
+#img_mundial{
+    right: 5px;
+    width: 225px;
+    height: 225px;
+}

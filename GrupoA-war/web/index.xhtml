@@ -1,0 +1,51 @@
+<ui:composition template="/WEB-INF/templates/plantilla.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">   
+    <ui:define name="title">Grupo Scout 39 Santo Angel - Málaga</ui:define>
+    
+    <ui:define name="content">
+        <div id="tag-light-grey">
+            <div class="tag-light-grey container">
+                <h1>Inicio</h1>
+                <p> El Grupo Scout 39 Santo Ángel está formado actualmente por unos cincuenta chicos y chicas que, 
+                    junto a sus scouters, se reúnen cada fin de semana para dejar el mundo mejor que lo encontraron. 
+                    Es el más antiguo de Andalucía (fue creado en 1962) y se integra, junto a otros muchos grupos, 
+                    en Scouts de Andalucía. Así que, como podéis imaginar, tiene una larga historia durante la cual ha ido cambiando de sede 
+                   (pasamos muchos años en el bajo de la Parroquia de Santo Ángel) hasta establecernos en el Colegio Guadaljaire, con unas 
+                   instalaciones y una predisposición magnífica para el trabajo de un grupo scout.
+
+                   La pañoleta del Grupo 39 es azul y blanca. Actualmente, el Grupo está compuesto por cuatro secciones:
+                   la Manada de Tha, la Tropa de Kim, la Unidad Esculta Siryu y el Clan Rover Almogama.  
+                   Somos un grupo relativamente pequeño y todas las secciones están muy unidas.
+                </p>
+            </div>
+        </div>
+        <div id="tag-grey">
+            <div class="container">
+                <h:graphicImage id="img1_inicio" class="rounded" alt="foto_panoleta" value="/imagenes/Inicio/Panoleta.jpg"/>
+                    <p>  Durante la larga historia de nuestro grupo hemos asistido a muchas acampadas y Festivales. En el curso 92-93,
+                     coincidiendo con nuestro XXX Aniversario de Grupo, ganamos el Festival de la Canción de Andalucía, con Familia 
+                     Feliz, y todo el grupo viajó a Tarragona al Nacional. Pirineos, el Camino de Santiago,  Sierra Nevada, Serranía de
+                     Ronda, Madrid… cada campamento, un nuevo destino. La historia de nuestro grupo puede repasarse también a 
+                     través de las muchas canciones que nos han unido, durante muchas generaciones, en torno a un mismo 
+                     sentimiento scout. Por nuestro 50º Aniversario realizamos el campamento de verano en Gredos. En 2016 ganamos 
+                     el Festival de la Canción Scout de Andalucía y nos disponemos a representar a toda la comunidad en Gran Canarias 
+                     en verano de 2017.
+
+                     ¡En este vídeo podéis ver nuestro local!
+                 </p>
+            </div>
+        </div>
+        <div id="tag-light-grey">
+            <div class="container">
+                <video controls="controls">
+                     <source src="/imagenes/Inicio/videoplayback.mp4" type="video/mp4"/>
+                </video>
+            </div>
+        </div>
+ </ui:define>
+</ui:composition>
+

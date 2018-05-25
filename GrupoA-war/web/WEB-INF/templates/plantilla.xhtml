@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      >
+    <h:head>
+        <title> <ui:insert name="title"> TODO supply a title </ui:insert> </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="./css/PlantillaCss.css" rel="stylesheet" type="text/css" />
+        <link href="./css/index.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script type='text/javascript' src="./JS/jquery.js"/>
+        <!--Bootstrap-->
+        <link href="css/bootstrap.css" rel="stylesheet"/>
+        <script type='text/javascript' src="./JS/bootstrap.js"/>     
+    </h:head>
+    <h:body>
+        <nav id="navegar" class="navbar navbar-expand-sm fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <h:graphicImage value="/imagenes/Plantilla/logo.png"/>  
+                    </a>
+                </div>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <h:button class="nav-link" value="Inicio" outcome="/index.xhtml"/>
+                    </li>                  
+                    <li class="nav-item">                  
+                        <h:button class="nav-link" value="Ubicación" outcome="/ubicacion.xhtml"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:button class="nav-link" value="ASDE" outcome="/asde.xhtml"/>                  
+                    </li>
+                    <li class="nav-item">
+                        <h:button class="nav-link" value="Colegio" outcome="/colegio.xhtml"/>                  
+                    </li>
+                    <li class="nav-item dropdown">
+                        <h:commandButton  value="Informacion" action="index.xhtml" id="btn_info" class="nav-link dropdown-toggle"/>  
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="faces/Uniformes.xhtml">Uniformes</a>
+                            <a class="dropdown-item" href="faces/Mochila.xhtml">Cómo hacer la mochila</a>
+                            <a class="dropdown-item" href="faces/EquipamientoBasico.xhtml">Equipamiento básico del scout</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <h:button class="nav-link" value="Registrarse" outcome="/registrop.xhtml"/>                 
+                    </li>
+                    <li class="nav-item">
+                        <h:button class="nav-link" value="Login" outcome="/login.xhtml"/>                 
+                    </li>
+                </ul>                
+            </div>
+        </nav>
+        <div id="cuerpoPlantilla">
+            <h:graphicImage class="img-responsive" value="/imagenes/Plantilla/Foto_plantilla.jpg" width="100%"/>
+            <div id="content" class="center">
+                <ui:insert name="content"> Contenido </ui:insert>
+            </div>           
+        </div>
+        <div class="btn-group-vertical" id="social-btn">
+            <h:link class="btn-floating btn-lg btn-yt affix-bottom"><i class="fa fa-facebook"></i></h:link>
+            <h:link class="btn-floating btn-lg btn-yt"><i class="fa fa-youtube"></i></h:link>
+            <h:link class="btn-floating btn-lg btn-yt"><i class="fa fa-google"></i></h:link>
+        </div>
+        <div id="pie" class="panel-footer">
+            <div id="footer-left"> Grupo Scout 39 Santo Angel - Málaga  </div>   
+            <div id="footer-right">   Desing by Grupo A - SII </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#btn_info").attr("data-toggle", "dropdown");
+
+            });
+        </script> 
+    </h:body>
+</html>

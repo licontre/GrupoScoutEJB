@@ -1,0 +1,130 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25-abr-2018, 21:40:46
+    Author     : PC
+*/
+
+
+body {
+      font-family: arial, sans-serif; 
+      margin: 0px; 
+      padding: 0px; 
+      font-size: 100%; 
+      color: #555; 
+      background-color: white;
+    }
+    
+html, body {
+    line-height: 1.4em;
+    }
+    
+#navegar{
+    background-color: #622599;
+ }
+ 
+ #navegar-castores{
+    background-color:  #3eb4dc;
+ }
+#navegar input{
+    background-color: #622599;
+    border: none;
+    padding: 15px 30px;
+    font-family: Open Sans;
+    font-weight: bold;
+    color: white;
+}
+
+#navegar input:hover{
+    background-color:#480b7f; 
+}
+
+
+#cuerpoPlantilla{
+    margin-top: 80px;
+}
+
+#pie{
+    background-color: #622599;
+    color:white;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+    font-family: Open Sans;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}
+
+#footer-left{
+    text-align: left;
+}
+
+#footer-right{
+    text-align: right;
+}
+
+#tag-grey{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #ededed;  
+}
+
+#tag-light-grey{
+    padding-top: 10px;
+    background-color: #f9f9f9;
+    padding-bottom: 10px;
+}
+
+#social-btn{
+    position: fixed;
+    bottom: 16px;
+    right: 8px;
+}
+
+.fa {
+    
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+  padding-left: 17px;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+  padding-left: 17px;
+}
+
+.my-row{
+    height: 75vh;
+    margin-bottom: 100px;
+}

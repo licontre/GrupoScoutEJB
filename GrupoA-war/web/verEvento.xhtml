@@ -1,0 +1,79 @@
+<ui:composition template="/WEB-INF/templates/plantilla-logueado.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">   
+    <ui:define name="head">
+        <link href="./css/inicio.css" rel="stylesheet" type="text/css" />
+        <link href="./css/verEvento.css" rel="stylesheet" type="text/css" />
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css"></script>
+        
+    </ui:define>
+    <ui:define name="title">Grupo Scout 39 Santo Angel - Málaga</ui:define>
+    <ui:define name="content">  
+        <c:set var="event" value="#{manejadorEventos.evento}" />
+       <div class="container"> 
+           <div class="row">
+               <div class="col-9">
+                   <h2>#{event.nombre}</h2>
+                   <p>#{event.descripcion}</p>
+                   <h:form>
+                       <h:commandButton class="btn btn-primary active   " value="Apuntarse"/>
+                   </h:form>
+                   <h3>Comentarios</h3>
+                   
+                   
+                   
+                   <div class="comments">
+                       <ui:repeat var="comment" value="#{manejadorComentarios.comentarios}">
+                       <div class="comment-wrap">
+                           <div class="photo">
+                               <div class="avatar" style="background-image:url('./imagenes/avatar.jpg') "></div>
+                           </div>
+                           <div class="comment-block">
+                               <p id="user">Nombre Usuario</p>
+                               <p class="comment-text">#{comment.comentario}</p>
+                               <div class="bottom-comment">
+                                   <div class="comment-date">#{comment.fecha}</div>
+                               </div>
+                           </div>
+                       </div>
+                       </ui:repeat>                     
+                       <div class="comment-wrap">
+                           <div class="photo">
+                               <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg')"></div>
+                           </div>
+                           <div class="comment-block">
+                               <h:form>
+                                   <h:inputTextarea id="c" cols="30" rows="3" a:placeholder="Comentar..." value="#{manejadorComentarios.comment}"/>
+                                   <h:commandButton value="Comentar" action="#{manejadorComentarios.addComentarios()}"/>
+                               </h:form>
+                           </div>
+                       </div>
+                       
+                       
+                   </div>
+
+               </div>
+
+                  <div class="col-3">                  
+                   <ul id="info">
+                       <li id="infoHead"> <b>Detalles</b> </li>
+                       <li><b>Precio:</b> #{event.precio}€</li>
+                       <li><b>Fecha de salida:</b> #{event.fecha}</li>
+                       <li><b>Localizacion:</b> #{event.localizacion}</li>     
+                   </ul>
+               </div>
+           </div> 
+                   
+                   
+               </div>
+               
+      <!-- </div>  -->
+    </ui:define>
+</ui:composition>

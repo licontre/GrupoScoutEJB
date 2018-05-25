@@ -1,0 +1,44 @@
+<ui:composition template="/WEB-INF/templates/plantilla-logueado.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core" >
+
+    <ui:define name="head">
+        <link href="./css/verDocumentos.css" rel="stylesheet" type="text/css"/>
+    </ui:define>
+    <ui:define name="title">Mis eventos</ui:define>
+
+    <ui:define name="content">
+
+        <div class="container">
+            <p>En esta pagina podrás ver los eventos a los que te has apuntado</p>
+            <h:form>
+                <h:dataTable var="event" value="#{manejadorEventos.eventos}">
+                    <h:column>
+                        <f:facet name="header">Nombre</f:facet>                 
+                        <h:commandButton class="btn btn-default btn-block" value="#{event.nombre}" action="verEvento.xhtml">
+                            <f:actionListener binding="#{manejadorEventos.setEvento(event)}"/>
+                        </h:commandButton>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Localizacion</f:facet>
+                            #{event.localizacion}
+                    </h:column> 
+                    <h:column>
+                        <f:facet name="header">Precio</f:facet>
+                            #{event.precio}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Fecha</f:facet>
+                            #{event.fecha}
+                    </h:column> 
+                </h:dataTable>
+            </h:form>    
+        </div>
+    </ui:define>
+
+
+</ui:composition>
