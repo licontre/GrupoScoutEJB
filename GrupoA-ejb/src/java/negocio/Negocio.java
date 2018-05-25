@@ -10,7 +10,7 @@ import modeloJPA.Usuario;
 
 @Local
 public interface Negocio {
-    public void registrarUsuario(Usuario u);
-    public void validarCuenta(String cuenta, String validacion);
-    public void compruebaLogin(Usuario u);
+    public void registrarUsuario(Usuario u)throws RegistroException;
+    public void validarCuenta(String cuenta, String validacion)throws RegistroException;
+    public void compruebaLogin(Usuario u) throws RegistroException;
 }

@@ -1,8 +1,10 @@
 package modeloJPA;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,7 +23,7 @@ public class Usuario implements Serializable {
 
     private static long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;   
     public enum Sexo { HOMBRE , MUJER };
     private String nombreusuario;
@@ -40,6 +42,7 @@ public class Usuario implements Serializable {
     public enum Cargo {CASTORES,MANADA,TROPA,UNIDAD,CLAN,SCOUTER,MONITOR,SECRETARIA};
     @Enumerated(EnumType.STRING)
     private Cargo cargo;
+    @Column(unique = true)
     private String email;
     private String password;
     private String fotoperfil;
@@ -60,8 +63,6 @@ public class Usuario implements Serializable {
     @ManyToMany
     private List<Documento> documentos;
 
-    public Usuario() {
-    }
    
     //Este metodo es especifico para la tarea 2
     public Usuario(String nombreusuario, String password, Cargo cargo,String nombre,String ap ){
@@ -71,6 +72,25 @@ public class Usuario implements Serializable {
         setApellidos(ap);
         setNombre(nombre);
         setProvincia("Malaga");
+        this.documentos= new ArrayList<>();
+        this.asistencias= new ArrayList<>();
+        this.comentarios= new ArrayList<>();
+        this.fechatransicion= new ArrayList<>();
+        this.pagoscuota=new ArrayList<>();
+        
+    }
+    public Usuario(){
+        this.apellidos="";
+        this.nombre="";
+        this.nombreusuario="";
+        this.calle="";
+        this.dni="";
+        this.documentos= new ArrayList<>();
+        this.asistencias= new ArrayList<>();
+        this.comentarios= new ArrayList<>();
+        this.fechatransicion= new ArrayList<>();
+        this.pagoscuota=new ArrayList<>();
+        
     }
     public Long getId() {
         return id;
