@@ -5,7 +5,7 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">   
-    <ui:define name="title">Grupo Scout 39 Santo Angel - Málaga</ui:define>
+    <ui:define name="title">Login</ui:define>
     <ui:define name="content">
         <br></br>
         <h:form class="form-horizontal">
@@ -40,5 +40,11 @@
                 </div>
             </div>
         </h:form>
- </ui:define>
+        <p id="demo"></p>
+        <script>
+            var path = window.location.pathname;
+            var output = path.split("/");
+            document.getElementById("demo").innerHTML = output[3];
+        </script>
+    </ui:define>
 </ui:composition>

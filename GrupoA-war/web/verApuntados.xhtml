@@ -1,0 +1,33 @@
+<ui:composition template="/WEB-INF/templates/plantilla-logueado.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="head"> 
+        <link href="./css/verDocumentos.css" rel="stylesheet" type="text/css" />
+    </ui:define>
+
+    <ui:define name="title">Lista Apuntados</ui:define> 
+
+    <ui:define name="content">
+        <div class="container">
+            <h:form>
+                <h:dataTable var="per" value="#{controlAsistencia.usuarios}">
+                    <h:column>
+                        <f:facet name="header">Nombre</f:facet>
+                            #{per.nombre}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Apellidos</f:facet>
+                            #{per.apellidos}
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            <h:button id="volver" class="btn btn-primary active" value="volver" outcome="/verEvento.xhtml"/>
+        </div>    
+    </ui:define>
+</ui:composition>

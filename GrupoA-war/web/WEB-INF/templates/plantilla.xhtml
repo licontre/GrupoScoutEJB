@@ -13,11 +13,17 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script type='text/javascript' src="./JS/jquery.js"/>
+        <script type='text/javascript' src="./js/validacion.js"/>
         <!--Bootstrap-->
         <link href="css/bootstrap.css" rel="stylesheet"/>
-        <script type='text/javascript' src="./JS/bootstrap.js"/>     
+        <script type='text/javascript' src="./JS/bootstrap.js"/>  
+        <ui:insert name="head"></ui:insert>
     </h:head>
-    <h:body>
+    <h:body onload="getNombreVista()">
+        <script>
+            document.getElementById("myImage").style.display = "none";
+        </script>
+
         <nav id="navegar" class="navbar navbar-expand-sm fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -49,7 +55,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item">
-                        <h:button class="nav-link" value="Registrarse" outcome="/registrop.xhtml"/>                 
+                        <h:button class="nav-link" value="Registrarse" outcome="/registro.xhtml"/>                 
                     </li>
                     <li class="nav-item">
                         <h:button class="nav-link" value="Login" outcome="/login.xhtml"/>                 
@@ -58,7 +64,9 @@
             </div>
         </nav>
         <div id="cuerpoPlantilla">
-            <h:graphicImage class="img-responsive" value="/imagenes/Plantilla/Foto_plantilla.jpg" width="100%"/>
+            <c:if test="true">
+                <h:graphicImage id="myImage" class="img-responsive" value="/imagenes/Plantilla/Foto_plantilla.jpg" width="100%"/>
+            </c:if>
             <div id="content" class="center">
                 <ui:insert name="content"> Contenido </ui:insert>
             </div>           
@@ -77,6 +85,10 @@
                 $("#btn_info").attr("data-toggle", "dropdown");
 
             });
+            if(getNombreVista()){
+                document.getElementById("myImage").style.display = "none";
+                document.getElementById("social-btn").style.display = "none";
+            }
         </script> 
     </h:body>
 </html>
