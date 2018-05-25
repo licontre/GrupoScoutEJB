@@ -1,39 +1,48 @@
-<ui:composition template="/WEB-INF/templates/plantilla-logueado.xhtml"
+<ui:composition template="/WEB-INF/templates/plantilla_1.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">   
-
-    <ui:define name="head">
-        <link rel="stylesheet" type="text/css" href="./css/verDocumentos.css"/>
-    </ui:define>
     <ui:define name="title">Secretaría</ui:define>
-    <ui:define name="content">
-        <div class="container">    
+<ui:define name="content">
+<h:head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/estilo.css"></link>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+      <title>Modifica Datos</title>
+ </h:head>
+    <ui:repeat var="user" value="#{login.usuarios}"> 
+    <div class="col-10">
+      <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="imagenes/Secretaria/kazoo.png" alt="Card image cap"></img>
+        <div class="card-body">
+            <h5 class="card-title">#{user.nombre}</h5>
+            <p class="card-text" style="font-weight: 600">#{user.cargo}</p>
+          <!-- Button trigger modal -->
             <h:form>
-                <h:dataTable var="user" value="#{login.usuarios}">
-                    <h:column>
-                        <f:facet name="header"> Nombre</f:facet>
-                            #{user.nombre}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header"> Apellidos</f:facet>
-                            #{user.apellidos}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header"> DNI</f:facet>
-                            #{user.dni}
-                    </h:column>
-                    <h:column>
-                        <h:commandButton value="Ver" action="miPerfil.xhtml">
-                            <f:actionListener binding="#{controlAutorizacion.setUsuario2(user)}"/>
-                        </h:commandButton>
-                    </h:column>
-                </h:dataTable>
-
+                <h:commandButton value="Ver" action="miPerfilS.xhtml">
+                    <f:actionListener binding="#{controlAutorizacion.setUsuario(user)}"/>
+                </h:commandButton>
             </h:form>
+          
         </div>
-    </ui:define>
+      </div>
+    </div>
+    </ui:repeat>
+</ui:define>
 </ui:composition>

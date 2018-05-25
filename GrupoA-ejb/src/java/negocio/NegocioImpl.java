@@ -5,10 +5,13 @@
  */
 package negocio;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.mail.Session;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
 import modeloJPA.Usuario;
 
 /**
@@ -28,32 +31,41 @@ public class NegocioImpl implements Negocio {
 
 
     @Override
-    public void registrarUsuario(Usuario u) {
-        Usuario user = em.find(Usuario.class,u.getId());
+    public void registrarUsuario(Usuario u) throws RegistroException{
+                /*Usuario user = em.find(Usuario.class,u.getId());
         if (user != null) {
             // El usuario ya existe
            System.out.println(u.getNombreusuario()+" nombre de usuario no disponible");
         }
+*/
+        Query cons = em.createNamedQuery("VerCorreo",Usuario.class);
+        cons.setParameter("email",u.getEmail());
+        List<Usuario> lis = cons.getResultList();
+        if(lis!=null){
+        for(Usuario user:lis){
+            System.out.println("-------------------->"+user.getNombreusuario());
+        }
+        }
         em.persist(u);
-
         System.out.println("Registrado "+u.getNombreusuario());
+       
     }
 
     @Override
-    public void compruebaLogin(Usuario u){
+    public void compruebaLogin(Usuario u)throws RegistroException{
         Usuario user2 = em.find(Usuario.class, u.getId());
         if (user2 == null) {
-           
+           throw new CuentaInexistenteException("Cuenta no existe");
         }
     if (!user2.getContrasenia().equals(u.getContrasenia())) {
-            System.out.println("Contrasena incorrecta");
+            throw new ContraseniaInvalidaException("Contraseña incorrecta");
         }
     }
 
    
 
     @Override
-    public void validarCuenta(String cuenta, String validacion) {
+    public void validarCuenta(String cuenta, String validacion) throws RegistroException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

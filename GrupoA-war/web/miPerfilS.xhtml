@@ -1,4 +1,4 @@
-<ui:composition template="/WEB-INF/templates/plantilla-logueado.xhtml"
+<ui:composition template="/WEB-INF/templates/plantilla_1.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -17,10 +17,12 @@
                 <h1>Perfil de  <h:outputText value="#{controlAutorizacion.usuario.nombreusuario}"/></h1>
             </div>
             <br/>
+            
             <div class="col-md-4">
                 <h3>Datos personales:</h3>
             </div>
             <div class="container">
+                <h:form>
             <table class="table">
               <thead>
                 <tr>
@@ -31,50 +33,56 @@
               <tbody>
                 <tr>
                   <td>Nombre:</td>
-                  <td><h:outputText value="#{controlAutorizacion.usuario.nombre}"/></td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.nombre}"/></td>
                 </tr>
                 <tr>
                   <td>Apellidos</td>
-                  <td><h:outputText value="#{controlAutorizacion.usuario.apellidos}"/></td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.apellidos}"/></td>
+                </tr>
+                <tr>
+                  <td>Alias:</td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.nombreusuario}"/></td>
                 </tr>
                 <tr>
                   <td>Email:</td>
-                  <td><h:outputText value="#{controlAutorizacion.usuario.email}"/></td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.email}"/></td>
                 </tr>
                 <tr>
                   <td>Fecha de entrada:</td>
-                  <td><h:outputText value="#{controlAutorizacion.usuario.fechaentrada}"/></td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.fechaentrada}"/></td>
                 </tr>
                 <tr>
                   <td>Dni:</td>
-                  <td><h:outputText value="#{controlAutorizacion.usuario.dni}"/></td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.dni}"/></td>
                 </tr>
                 <tr>
                   <td>Fecha de nacimiento:</td>
-                  <td><h:outputText value="#{controlAutorizacion.usuario.fechanacimiento}"/></td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.fechanacimiento}"/></td>
                 </tr>
                 <tr>
                   <td>Dirección postal:</td>
-                  <td><h:outputText value="#{controlAutorizacion.usuario.calle}"/></td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.calle}"/></td>
                 </tr>
                 <tr>
                   <td>Código postal:</td>
-                  <td><h:outputText value="#{controlAutorizacion.usuario.codigopostal}"/></td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.codigopostal}"/></td>
                 </tr>
                 <tr>
                   <td>Localidad:</td>
-                  <td><h:outputText value="#{controlAutorizacion.usuario.localidad}"/></td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.localidad}"/></td>
                 </tr>
                 <tr>
                   <td>Provincia:</td>
-                  <td><h:outputText value="#{controlAutorizacion.usuario.provincia}"/></td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.provincia}"/></td>
                 </tr>
                 <tr>
                   <td>Sección</td>
-                  <td><h:outputText value="#{controlAutorizacion.usuario.cargo}"/></td>
+                  <td><h:inputText value="#{controlAutorizacion.usuario.cargo}"/></td>
                 </tr>
               </tbody>
             </table>
+                    <h:commandButton value="Guardar" type="submit"></h:commandButton>
+                </h:form>
           </div>
         <br/>
             <div class="container"> 

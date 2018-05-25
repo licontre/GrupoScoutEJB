@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.LocalBean;
 import javax.ejb.Remote;
 import javax.enterprise.context.RequestScoped;
@@ -16,6 +18,9 @@ import javax.inject.Inject;
 import javax.inject.*;
 import modeloJPA.Usuario;
 import modeloJPA.Usuario.Cargo;
+import negocio.ContrasenaIncorrectaException;
+import negocio.CuentaInexistenteException;
+import negocio.InfoSession;
 import negocio.Negocio;
 
 /**
@@ -27,11 +32,12 @@ import negocio.Negocio;
 public class Login implements Controlador, Serializable {
     
     @Inject
-    private Negocio negocio;
+    private InfoSession info;
     
-    private String usuario;
+    private String correo;
     private String password;
     private List<Usuario> usuarios;
+    private Usuario user;
     
     @Inject
     private ControlAutorizacion ctrl;
@@ -44,62 +50,45 @@ public class Login implements Controlador, Serializable {
         usuarios.add(new Usuario("secretaria", "secretaria", Cargo.SECRETARIA,"Pepe","Wilfred"));
     }
     public void reset(){
-        this.usuario = null;
+        this.correo = null;
         this.password = null;
         this.ctrl = null;
     }
-    public String getUsuario() {
-        return usuario;
+    public String getCorreo() {
+        return correo;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setCorreo(String usuario) {
+        this.correo = usuario;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public String autenticar() {
-               
-        Iterator<Usuario> it = getUsuarios().iterator();
-        Usuario aux =null;
-        boolean find = false;
-        String cad=null;
-        if(usuario==null){
-            return "login.xhtml";
-        }
-        do{
-            aux = it.next();
-            if(aux.getNombreusuario().equals(getUsuario()))
-                find = true;            
-        }while(it.hasNext() && !find);
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        System.out.println("------------------------------------------------");
-        System.out.println("usuario: "+aux.getNombreusuario());
-        System.out.println("pass: "+aux.getPassword());
-        System.out.println("------------------------------------------------");
-        if(!find)
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario no existe", "El usuario no existe"));
-        else if(!aux.getPassword().equals(password))
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "La contraseña es incorrecta","La contraseña es incorrecta"));
-        
-        else{
-            
-            getCtrl().setUsuario(aux);
-            cad=getCtrl().home();
-        }
-        
-        return cad;
+    public String autenticar() throws ContrasenaIncorrectaException, CuentaInexistenteException {
+        System.out.println("Pasara");
+        String res =info.validarUsuario(correo, password);
+        this.user = info.getUsuario();
+        System.out.println(user.getEmail());
+        System.out.println(user.getNombre());
+        System.out.println(user.getContrasenia());
+        return res;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.autenticar();
+        try {
+            this.autenticar();
+        } catch (ContrasenaIncorrectaException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CuentaInexistenteException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

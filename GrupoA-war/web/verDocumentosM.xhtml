@@ -1,4 +1,4 @@
-<ui:composition template="/WEB-INF/templates/plantilla-logueado.xhtml"
+<ui:composition template="/WEB-INF/templates/plantillaMonitor.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -39,15 +39,18 @@
                         <f:facet name="header">Cambiar Documento</f:facet>
                         <h:inputFile value="#{manejadorDocumentos.fich}" />
                         <h:commandButton value="subir" action="#{manejadorDocumentos.upload()}"/> 
+						<h:commandButton value="Editar" action="/editardocumentoM.xhtml">
+                <f:actionListener binding="#{manejadorDocumentos.setDocumento(doc)}"/>
+            </h:commandButton>
                     </h:column>
+					
+					
                 </h:dataTable>
 
             </h:form>
         </div>
 
-
-  
-</ui:define>
+    </ui:define>
 
 
 

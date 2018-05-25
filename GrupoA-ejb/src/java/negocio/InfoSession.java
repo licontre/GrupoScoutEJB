@@ -9,8 +9,8 @@ import javax.ejb.Local;
 import modeloJPA.Usuario;
 
 @Local
-public interface Negocio {
-    public void registrarUsuario(Usuario u)throws RegistroException;
-    public void validarCuenta(String cuenta, String validacion)throws RegistroException;
-    public void compruebaLogin(Usuario u) throws RegistroException;
+public interface InfoSession {
+    
+    public String validarUsuario(String correo, String passwd)throws ContrasenaIncorrectaException, CuentaInexistenteException;
+    public Usuario getUsuario();
 }
