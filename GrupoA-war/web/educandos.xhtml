@@ -1,0 +1,66 @@
+<ui:composition template="/WEB-INF/templates/plantilla-logueado.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"    
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:t="http://xmlns.jcp.org/jsf/passthrough"
+                  >   
+    <ui:define name="title">Grupo Scout 39 Santo Angel - Málaga</ui:define>
+    <h:head>
+        <link href="./css/educandos.css" rel="stylesheet" type="text/css"/>
+        <script type='text/javascript' src="./JS/jquery.js"/>
+        <!--Bootstrap-->
+        <link href="css/bootstrap.css" rel="stylesheet"/>
+        <script type='text/javascript' src="./JS/bootstrap.js"/>
+    </h:head>
+    <ui:define name="content">
+        <div id="tag-light-grey">
+            <div class="tag-light-grey container">
+                <h1>Educandos</h1>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <h:panelGrid class="table" columns="2">
+                <h:panelGroup>
+                    <h3>Documentos</h3>
+                    <ui:repeat var="doc" value="#{manejadorDocumentos.documentos}"> 
+                        <h:form>
+                            <li class="list-group-item">
+                                <h:outputLabel>#{doc.nombre}</h:outputLabel>                      
+                            <h:commandButton value="Ver" action="verdocumento.xhtml">
+                                <f:actionListener binding="#{manejadorDocumentos.setDocumento(doc)}"/>
+                            </h:commandButton> 
+                            <h:commandButton value="Editar" action="editardocumento.xhtml">
+                                <f:actionListener binding="#{manejadorDocumentos.setDocumento(doc)}"/>
+                            </h:commandButton> 
+                            </li>
+                        </h:form>
+                    </ui:repeat> 
+                    <h3>Subir Documento</h3>
+                    <h:form>
+                        <h:inputFile/>
+                    </h:form>
+                    
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h3>Eventos</h3>
+                    <ul class="list-group">
+                    <ui:repeat var="event" value="#{manejadorEventos.eventos}"> 
+                        <h:form>
+                            <li class="list-group-item">
+                            <h:outputLabel>#{event.nombre}</h:outputLabel>                      
+                            <h:commandButton value="Ver" action="verEvento.xhtml">
+                                <f:actionListener binding="#{manejadorEventos.setEvento(event)}"/>
+                            </h:commandButton> 
+                            </li>
+                        </h:form>
+                    </ui:repeat>
+                    </ul>
+                </h:panelGroup>
+            </h:panelGrid>
+        </div> 
+ </ui:define>
+</ui:composition>
+

@@ -25,19 +25,38 @@
             <div class="container-fluid">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <h:button class="nav-link" value="Seccion" outcome="inicio.xhtml"/>
+                        <h:button class="nav-link" value="Inicio" outcome="inicio.xhtml"/>
+                    </li>
+                <c:choose> 
+                    <c:when test="#{controlAutorizacion.usuario.cargo != 'SECRETARIA'}">
+                        <li class="nav-item">
+                            <h:button class="nav-link" value="Documentos" outcome="verDocumentos.xhtml"/>
+                        </li>
+                        <li class="nav-item">
+                            <h:button class="nav-link" value="Mi eventos" outcome="verMisEventos.xhtml"/>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                         <li class="nav-item">
+                        <h:button class="nav-link" value="Miembros" outcome="/miembros.xhtml"/>
                     </li>
                     <li class="nav-item">
-                        <h:button class="nav-link" value="Documentos" outcome="verDocumentos.xhtml"/>
+                        <h:button class="nav-link" value="Documentación en Trámite" outcome="/documentacion.xhtml"/>
                     </li>
-                    <li class="nav-item">
-                        <h:button class="nav-link" value="Mi eventos" outcome="verMisEventos.xhtml"/>
-                    </li> 
+                    </c:otherwise>
+                </c:choose>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <h:button class="nav-link" value="Mi perfil" outcome="miPerfil.xhtml"/>                 
-                    </li>
+                    <c:if test="#{controlAutorizacion.usuario.cargo != 'SECRETARIA'}">
+                        <c:if test="#{controlAutorizacion.usuario.cargo=='MONITOR'}">
+                            <li class="nav-item">
+                                <h:button class="nav-link" value="Nuevo Evento" outcome="crearEvento.xhtml"/>                 
+                            </li>
+                        </c:if>        
+                        <li class="nav-item">
+                            <h:button class="nav-link" value="Mi perfil" outcome="miPerfil.xhtml"/>                 
+                        </li>
+                    </c:if>
                     <li class="nav-item">
                         <h:button class="nav-link" value="Logout" outcome="login.xhtml"/>                 
                     </li>

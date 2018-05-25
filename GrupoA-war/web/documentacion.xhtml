@@ -1,36 +1,17 @@
-<ui:composition template="/WEB-INF/templates/plantilla_1.xhtml"
+<ui:composition template="/WEB-INF/templates/plantilla-logueado.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                >   
+                xmlns:f="http://xmlns.jcp.org/jsf/core">   
     <ui:define name="title">Secretaría</ui:define>
 <ui:define name="content">
-<h:head>
-    <meta charset="utf-8"></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css"></link>
-        <meta charset="utf-8"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-      <title>Modifica Datos</title>
-  </h:head>
+
       <h1>Documentación en trámite</h1>
     <div class="col-11 mx-sm-5 mb-5 text-center">
-        <h:form  enctype="multipart/form-data">
-        <h:dataTable id="tabla" class="table table-striped" var="doc" value="#{manejadorDocumentos.documentos}">
+        <h:form>
+            <h:dataTable id="tabla" class="table table-striped" var="doc" value="#{manejadorDocumentos.documentos}">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Nombre"></h:outputText>
@@ -44,17 +25,12 @@
                     <h:outputText value="#{doc.estado}"></h:outputText>
                 </h:column>
                 <h:column>
-                        <f:facet name="header">Cambiar Documento</f:facet>
-                        <h:inputFile value="#{manejadorDocumentos.fich}" />
-                        <h:commandButton class="btn btn-primary" value="subir" action="#{manejadorDocumentos.upload()}"/> 
-                </h:column>
-                <h:column>
-                    <h:commandButton value="Editar" class="btn btn-primary"  action="editardocumentoS.xhtml">
+                    <h:commandButton value="Editar" class="btn btn-primary" action="/editardocumentoS.xhtml">
                         <f:actionListener binding="#{manejadorDocumentos.setDocumento(doc)}"/>
                     </h:commandButton>
                 </h:column>
            </h:dataTable>
-        </h:form>    
+        </h:form>
     </div>
   <script src="JS/buscador.js"></script>
 </ui:define>

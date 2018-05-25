@@ -47,7 +47,7 @@ public class ControlAutorizacion implements Serializable {
     {
         // Destruye la sesión (y con ello, el ámbito de este bean)
         FacesContext ctx = FacesContext.getCurrentInstance();
-        //ctx.getExternalContext().invalidateSession();
+        ctx.getExternalContext().invalidateSession();
         usuario = null;
         return "index.xhtml";
     }

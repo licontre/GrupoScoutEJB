@@ -3,17 +3,17 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:p="http://primefaces.org/ui"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:t="http://myfaces.apache.org/tomahawk">
 
+
     <ui:define name="head"> 
-                <link href="./css/verDocumentos.css" rel="stylesheet" type="text/css" />
+        <link href="./css/verDocumentos.css" rel="stylesheet" type="text/css" />
     </ui:define>
 
-    <ui:define name="title">Documentos</ui:define>
-
-
+    <ui:define name="title">Documentos</ui:define> 
+    
     <ui:define name="content">
 
         <div class="container">
@@ -40,15 +40,26 @@
                         <h:inputFile value="#{manejadorDocumentos.fich}" />
                         <h:commandButton value="subir" action="#{manejadorDocumentos.upload()}"/> 
                     </h:column>
+                    <c:if test="#{controlAutorizacion.usuario.cargo=='MONITOR'}">
+                        <h:column>
+                            <f:facet name="header">Cambiar estado</f:facet>
+                            <h:selectOneMenu value = "#{userData.data}"> 
+                                <f:selectItem itemValue = "-" itemLabel = "-" /> 
+                                <f:selectItem itemValue = "Correcto" itemLabel = "Correcto" />
+                                <f:selectItem itemValue = "Incorrecto" itemLabel = "Incorrecto" />
+                                <f:selectItem itemValue = "Pendiente Revision" itemLabel = "Revision" />
+                            </h:selectOneMenu>                    
+                        </h:column> 
+                    </c:if>
                 </h:dataTable>
 
+                <h:commandButton value="Modificar"/>
             </h:form>
+
         </div>
 
 
-  
-</ui:define>
-
+    </ui:define>
 
 
 
