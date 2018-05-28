@@ -17,6 +17,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
 import modeloJPA.Usuario;
 import modeloJPA.Usuario.Cargo;
 import modeloJPA.Usuario.Sexo;
@@ -129,15 +130,18 @@ public class Registro implements Serializable{
     }
     public String registrando() throws ParseException{
         try {
+
             SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
             Date fe = sm.parse(anio+"-"+mes+"-"+dia);
             int edad = this.edad(dia+"/"+mes+"/"+anio);
+
             usuario.setFechanacimiento(fe);
             if(sexo.equals("femenino")){
                 this.usuario.setGenero(Sexo.MUJER);
             }else{
                 this.usuario.setGenero(Sexo.HOMBRE);
             }
+
             if(edad < 7){
                 this.usuario.setCargo(Cargo.CASTORES);
             }else if(edad < 10){
@@ -185,6 +189,7 @@ public class Registro implements Serializable{
     return anos;
   }
     
+
     public String registrarUsuario()throws RegistroException {
         try {
             if (!usuario.getContrasenia().equals(repass)) {

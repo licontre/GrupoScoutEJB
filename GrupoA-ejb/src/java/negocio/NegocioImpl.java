@@ -32,7 +32,7 @@ public class NegocioImpl implements Negocio {
 
     @Override
     public void registrarUsuario(Usuario u) throws RegistroException{
-             
+    
         Query cons = em.createNamedQuery("VerCorreo",Usuario.class);
         cons.setParameter("email",u.getEmail());
         List<Usuario> lis = cons.getResultList();
@@ -44,7 +44,7 @@ public class NegocioImpl implements Negocio {
 
             em.persist(u);
             System.out.println("Registrado "+u.getNombreusuario());
-      
+
     }
 
     @Override

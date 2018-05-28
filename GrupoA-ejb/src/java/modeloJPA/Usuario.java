@@ -25,7 +25,7 @@ public class Usuario implements Serializable {
 
     private static long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;   
     public enum Sexo { HOMBRE , MUJER };
     private String nombreusuario;
