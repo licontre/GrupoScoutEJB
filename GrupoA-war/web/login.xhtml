@@ -8,13 +8,15 @@
     <ui:define name="title">Grupo Scout 39 Santo Angel - Málaga</ui:define>
     <ui:define name="content">
         <br></br>
-        <h:form class="form-horizontal">
+        <h:form class="form-horizontal" id="login">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="email">Email:</label>
                 <div class="col-sm-10">
-                    <h:inputText class="form-control" id="email" value="#{login.usuario}" label="Usuario/Email">
-                        <f:validateRequired/>
-                    </h:inputText>
+                    <h:inputText class="form-control" id="email" value="#{login.correo}">
+                                <f:validateRequired/>
+                                <f:validateRegex 
+                                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                            </h:inputText>
                     <h:message for="email" style="color:red"/>
                 </div>
             </div> 

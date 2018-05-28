@@ -13,13 +13,11 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.ejb.LocalBean;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.management.Query;
+
 import modeloJPA.Usuario;
 import modeloJPA.Usuario.Cargo;
 import modeloJPA.Usuario.Sexo;
@@ -132,25 +130,66 @@ public class Registro implements Serializable{
     }
     public String registrando() throws ParseException{
         try {
-                      
-            
-            SimpleDateFormat sm = new SimpleDateFormat("yyyy-mm-dd");
-            usuario.setId(new Long(145632));
+
+            SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
             Date fe = sm.parse(anio+"-"+mes+"-"+dia);
+            int edad = this.edad(dia+"/"+mes+"/"+anio);
+
             usuario.setFechanacimiento(fe);
             if(sexo.equals("femenino")){
                 this.usuario.setGenero(Sexo.MUJER);
             }else{
                 this.usuario.setGenero(Sexo.HOMBRE);
             }
-            this.usuario.setCargo(Cargo.CLAN);
+
+            if(edad < 7){
+                this.usuario.setCargo(Cargo.CASTORES);
+            }else if(edad < 10){
+                this.usuario.setCargo(Cargo.MANADA);
+            }else if(edad < 13){
+                this.usuario.setCargo(Cargo.SCOUTER);
+            }else if(edad < 16){
+                this.usuario.setCargo(Cargo.UNIDAD);
+            }else if(edad < 19){
+                this.usuario.setCargo(Cargo.CLAN);
+            }else{
+                this.usuario.setCargo(Cargo.MONITOR);
+            }
+            
             negocio.registrarUsuario(this.usuario);
+            
         } catch (RegistroException ex) {
             Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return "login.xhtml";
-        
     }
+    
+    
+    
+
+    
+    private int edad(String fecha_nac) {     //fecha_nac debe tener el formato dd/MM/yyyy
+   
+    Date fechaActual = new Date();
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    String hoy = formato.format(fechaActual);
+    String[] dat1 = fecha_nac.split("/");
+    String[] dat2 = hoy.split("/");
+    int anos = Integer.parseInt(dat2[2]) - Integer.parseInt(dat1[2]);
+    int mes = Integer.parseInt(dat2[1]) - Integer.parseInt(dat1[1]);
+    if (mes < 0) {
+      anos = anos - 1;
+    } else if (mes == 0) {
+      int dia = Integer.parseInt(dat2[0]) - Integer.parseInt(dat1[0]);
+      if (dia > 0) {
+        anos = anos - 1;
+      }
+    }
+    return anos;
+  }
+    
+
     public String registrarUsuario()throws RegistroException {
         try {
             if (!usuario.getContrasenia().equals(repass)) {
