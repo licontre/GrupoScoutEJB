@@ -32,23 +32,19 @@ public class NegocioImpl implements Negocio {
 
     @Override
     public void registrarUsuario(Usuario u) throws RegistroException{
-                /*Usuario user = em.find(Usuario.class,u.getId());
-        if (user != null) {
-            // El usuario ya existe
-           System.out.println(u.getNombreusuario()+" nombre de usuario no disponible");
-        }
-*/
+             
         Query cons = em.createNamedQuery("VerCorreo",Usuario.class);
         cons.setParameter("email",u.getEmail());
         List<Usuario> lis = cons.getResultList();
-        if(lis!=null){
-        for(Usuario user:lis){
-            System.out.println("-------------------->"+user.getNombreusuario());
-        }
-        }
-        em.persist(u);
-        System.out.println("Registrado "+u.getNombreusuario());
-       
+
+            for(Usuario user:lis){
+                System.out.println("-------------------->"+user.getNombreusuario());
+                throw new CuentaRepetidaException("Correo ya registrado.");
+            }
+
+            em.persist(u);
+            System.out.println("Registrado "+u.getNombreusuario());
+      
     }
 
     @Override
@@ -57,7 +53,7 @@ public class NegocioImpl implements Negocio {
         if (user2 == null) {
            throw new CuentaInexistenteException("Cuenta no existe");
         }
-    if (!user2.getContrasenia().equals(u.getContrasenia())) {
+        if (!user2.getContrasenia().equals(u.getContrasenia())) {
             throw new ContraseniaInvalidaException("Contraseña incorrecta");
         }
     }

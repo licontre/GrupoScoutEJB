@@ -2,7 +2,10 @@ package BackingBeans;
 
 import java.awt.event.ActionEvent;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,6 +23,7 @@ import modeloJPA.Usuario;
 import modeloJPA.Usuario.Cargo;
 import negocio.ContrasenaIncorrectaException;
 import negocio.CuentaInexistenteException;
+import negocio.CuentaRepetidaException;
 import negocio.InfoSession;
 import negocio.Negocio;
 
@@ -33,7 +37,9 @@ public class Login implements Controlador, Serializable {
     
     @Inject
     private InfoSession info;
-    
+    private String anio;
+    private String mes;
+    private String dia;
     private String correo;
     private String password;
     private List<Usuario> usuarios;
@@ -73,11 +79,21 @@ public class Login implements Controlador, Serializable {
     public String autenticar() throws ContrasenaIncorrectaException, CuentaInexistenteException {
         System.out.println("Pasara");
         String res =info.validarUsuario(correo, password);
-        this.user = info.getUsuario();
-        System.out.println(user.getEmail());
-        System.out.println(user.getNombre());
-        System.out.println(user.getContrasenia());
+        this.setUser(info.getUsuario());
+        System.out.println(getUser().getEmail());
+        System.out.println(getUser().getNombre());
+        System.out.println(getUser().getContrasenia());
         return res;
+    }
+    
+    public String modificar() throws CuentaRepetidaException, ParseException{
+        SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
+        if(anio!="2011"||mes!="01"||dia!="01"){
+            Date fe = sm.parse(getAnio()+"-"+getMes()+"-"+getDia());
+            user.setFechanacimiento(fe);
+        }
+        System.out.println("Modificando "+mes);
+        return info.modificarDatosUsuario(user);
     }
 
     @Override
@@ -117,5 +133,61 @@ public class Login implements Controlador, Serializable {
      */
     public void setCtrl(ControlAutorizacion ctrl) {
         this.ctrl = ctrl;
+    }
+
+    /**
+     * @return the user
+     */
+    public Usuario getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+
+    /**
+     * @return the anio
+     */
+    public String getAnio() {
+        return anio;
+    }
+
+    /**
+     * @param anio the anio to set
+     */
+    public void setAnio(String anio) {
+        this.anio = anio;
+    }
+
+    /**
+     * @return the mes
+     */
+    public String getMes() {
+        return mes;
+    }
+
+    /**
+     * @param mes the mes to set
+     */
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+
+    /**
+     * @return the dia
+     */
+    public String getDia() {
+        return dia;
+    }
+
+    /**
+     * @param dia the dia to set
+     */
+    public void setDia(String dia) {
+        this.dia = dia;
     }
 }

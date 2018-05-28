@@ -13,4 +13,5 @@ public interface InfoSession {
     
     public String validarUsuario(String correo, String passwd)throws ContrasenaIncorrectaException, CuentaInexistenteException;
     public Usuario getUsuario();
+    public String modificarDatosUsuario(Usuario usu) throws CuentaRepetidaException;
 }
