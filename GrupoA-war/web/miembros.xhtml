@@ -25,8 +25,8 @@
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
       <title>Modifica Datos</title>
- </h:head>
-    <ui:repeat var="user" value="#{login.usuarios}"> 
+ </h:head>login.usuarios
+ <ui:repeat var="user" value="#{editor.getUsuarios()}"> 
     <div class="col-10">
       <div class="card" style="width: 18rem;">
           <img class="card-img-top" src="imagenes/Secretaria/kazoo.png" alt="Card image cap"></img>
@@ -35,8 +35,8 @@
             <p class="card-text" style="font-weight: 600">#{user.cargo}</p>
           <!-- Button trigger modal -->
             <h:form>
-                <h:commandButton value="Ver" action="miPerfilS.xhtml">
-                    <f:actionListener binding="#{controlAutorizacion.setUsuario(user)}"/>
+                <h:commandButton value="Ver" action="modificaUsuarios.xhtml">
+                    <f:actionListener binding="#{editor.setUser(user)}"/>
                 </h:commandButton>
             </h:form>
           

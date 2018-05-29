@@ -14,7 +14,7 @@
             </div>
         </div>
             <div class="col-md-4">
-                <h1>Perfil de  <h:outputText value="#{login.user.nombreusuario}"/></h1>
+                <h1>Perfil de  <h:outputText value="#{editor.user.nombreusuario}"/></h1>
             </div>
             <br/>
             
@@ -33,29 +33,29 @@
               <tbody>
                 <tr>
                   <td>Nombre:</td>
-                  <td><h:inputText value="#{login.user.nombre}"/></td>
+                  <td><h:inputText value="#{editor.user.nombre}"/></td>
                 </tr>
                 <tr>
                   <td>Apellidos</td>
-                  <td><h:inputText value="#{login.user.apellidos}"/></td>
+                  <td><h:inputText value="#{editor.user.apellidos}"/></td>
                 </tr>
                 <tr>
                   <td>Alias:</td>
-                  <td><h:inputText value="#{login.user.nombreusuario}"/></td>
+                  <td><h:inputText value="#{editor.user.nombreusuario}"/></td>
                 </tr>
                 <tr>
                   <td>Email:</td>
-                  <td><h:inputText value="#{login.user.email}"/></td>
+                  <td><h:inputText value="#{editor.user.email}"/></td>
                 </tr>
                 <tr>
                   <td>Dni:</td>
-                  <td><h:inputText value="#{login.user.dni}"/></td>
+                  <td><h:inputText value="#{editor.user.dni}"/></td>
                 </tr>
                 <tr>
                   <td>Fecha de nacimiento:</td>
                   <td><div class="input-group">
                                 <span class="input-group-btn">
-                                    <h:selectOneMenu value = "#{login.dia}" class="form-control" > 
+                                    <h:selectOneMenu value = "#{editor.dia}" class="form-control" > 
                                         <f:selectItem itemValue = "01" itemLabel = "1" /> 
                                         <f:selectItem itemValue = "02" itemLabel = "2" />
                                         <f:selectItem itemValue = "03" itemLabel = "3" /> 
@@ -91,7 +91,7 @@
                                 </span>
                                 <span class="input-group-btn"></span>
                                 <span class="input-group-btn">
-                                    <h:selectOneMenu value = "#{login.mes}" class="form-control"> 
+                                    <h:selectOneMenu value = "#{editor.mes}" class="form-control"> 
                                         <f:selectItem itemValue = "01" itemLabel = "Enero" /> 
                                         <f:selectItem itemValue = "02" itemLabel = "Febrero" />
                                         <f:selectItem itemValue = "03" itemLabel = "Marzo" /> 
@@ -108,7 +108,7 @@
                                 </span>
                                 <span class="input-group-btn"> </span>
                                 <span class="input-group-btn">
-                                    <h:selectOneMenu value = "#{login.anio}" class="form-control"> 
+                                    <h:selectOneMenu value = "#{editor.anio}" class="form-control"> 
                                         <f:selectItem itemValue = "2011" itemLabel = "2011" /> 
                                         <f:selectItem itemValue = "2010" itemLabel = "2010" /> 
                                         <f:selectItem itemValue = "2009" itemLabel = "2009" /> 
@@ -141,24 +141,41 @@
                 </tr>
                 <tr>
                   <td>Dirección postal:</td>
-                  <td><h:inputText value="#{login.user.calle}"/></td>
+                  <td><h:inputText value="#{editor.user.calle}"/></td>
                 </tr>
                 <tr>
                   <td>Código postal:</td>
-                  <td><h:inputText value="#{login.user.codigopostal}"/></td>
+                  <td><h:inputText value="#{editor.user.codigopostal}"/></td>
                 </tr>
                 <tr>
                   <td>Localidad:</td>
-                  <td><h:inputText value="#{login.user.localidad}"/></td>
+                  <td><h:inputText value="#{editor.user.localidad}"/></td>
                 </tr>
                 <tr>
                   <td>Provincia:</td>
-                  <td><h:inputText value="#{login.user.provincia}"/></td>
+                  <td><h:inputText value="#{editor.user.provincia}"/></td>
+                </tr>
+                  <tr>
+                  <td>Rol:</td>
+                  <td>
+                      <span class="input-group-btn">
+                        <h:selectOneMenu value = "#{editor.cargo}" class="form-control">
+                            <f:selectItem itemValue = "CASTORES" itemLabel = "CASTORES" /> 
+                            <f:selectItem itemValue = "MANADA" itemLabel = "MANADA" />
+                            <f:selectItem itemValue = "TROPA" itemLabel = "TROPA" />
+                            <f:selectItem itemValue = "UNIDAD" itemLabel = "UNIDAD" />
+                            <f:selectItem itemValue = "CLAN" itemLabel = "CLAN" />
+                            <f:selectItem itemValue = "SCOUTER" itemLabel = "SCOUTER" />
+                            <f:selectItem itemValue = "MONITOR" itemLabel = "MONITOR" />
+                            <f:selectItem itemValue = "SECRETARIA" itemLabel = "SECRETARIA" />
+                         </h:selectOneMenu>
+                      </span>
+                  </td>
                 </tr>
                 
               </tbody>
             </table>
-                    <h:commandButton value="Guardar" type="submit"  action="#{login.modificar()}"></h:commandButton>
+                    <h:commandButton value="Guardar" type="submit"  action="#{editor.editado()}"></h:commandButton>
                 </h:form>  
             </div>
         <br/>

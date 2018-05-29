@@ -153,7 +153,7 @@ public class Registro implements Serializable{
             }else if(edad < 19){
                 this.usuario.setCargo(Cargo.CLAN);
             }else{
-                this.usuario.setCargo(Cargo.MONITOR);
+                this.usuario.setCargo(Cargo.SCOUTER);
             }
             
             negocio.registrarUsuario(this.usuario);
